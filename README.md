@@ -55,7 +55,7 @@ The **Extra stats widget** displays the following:
 
 ## Screenshot
 
-![image](https://github.com/rickstaa/nitro-type-show-daily-races/assets/17570430/d42bc612-7b7e-48c3-968d-005b16e242d5)
+![image](https://github.com/rickstaa/nitro-type-race-info-footer/assets/17570430/351a76fe-34e0-4799-9b52-06b9f8018a14)
 
 ## Bugs and contributions
 
