@@ -1,15 +1,25 @@
 # Nitro Type - Race Info Footer
 
-This repository contains a userscript that adds an informational footer to the [Nitro Type race page](https://www.nitrotype.com/race). It was based on [@follycakes](https://www.nitrotype.com/racer/follycakes) version of the [Nitro Type-Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) user script that was originally created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt).
-
-This footer currently contains four widgets:
+This repository contains a userscript that adds an informational footer to the [Nitro Type race page](https://www.nitrotype.com/race). It currently contains four widgets:
 
 *   **Daily challenges widget** - Shows how far you are with the daily challenges.
 *   **Racing stats widget** - Shows several Nitro Type racing stats (see below).
 *   **Season progress widget** - Shows your season progress and next reward.
 *   **Extra stats widget** - Shows other Nitro Type-related stats (see below).
 
-#### Racing stats widget
+It was based on [@follycakes](https://www.nitrotype.com/racer/follycakes) version of the [Nitro Type-Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) user script that was originally created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt). 
+
+## Widgets
+
+### Daily challenges widget
+
+The **Daily challenges widget** displays the following information:
+
+*   **Daily challenge progress**
+*   **Daily challenge reward**
+*   **Daily challenge status**
+*   
+### Racing stats widget
 
 The **Stats Widget** displays the following stats:
 
@@ -20,12 +30,20 @@ The **Stats Widget** displays the following stats:
 *   **Average speed**
 *   **Average accuracy**
 
-#### Other stats widget
+### Season progress widget
+
+The **Season progress widget** displays the following:
+
+*   **Season progress**
+*   **Next reward**
+*   **Season level**
+
+### Other stats widget
 
 The **Extra stats widget** displays the following:
 
-*   **Mystery Box claim status**
 *   **Current Cash**
+*   **Mystery Box claim status**
 
 ## Installation
 
