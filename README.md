@@ -15,40 +15,40 @@ It was based on [@follycakes](https://www.nitrotype.com/racer/follycakes) versio
 
 The **Daily challenges widget** displays the following information:
 
-*   **Daily challenge progress**
-*   **Daily challenge reward**
-*   **Daily challenge status**
+*   Daily challenge progress
+*   Daily challenge reward
+*   Daily challenge status
 
 ### Racing stats widget
 
 The **Stats Widget** displays the following stats:
 
-*   **Total user races**
-*   **Season Races**
-*   **Team Races**
-*   **Current Session Races**
-*   **Average speed**
-*   **Average accuracy**
+*   Total user races
+*   Season Races
+*   Team Races
+*   Current Session Races
+*   Average speed
+*   Average accuracy
 
 ### Season progress widget
 
 The **Season progress widget** displays the following:
 
-*   **Season progress**
-*   **Next reward**
-*   **Season level**
+*   Season progress
+*   Next reward
+*   Season level
 
 ### Other stats widget
 
 The **Extra stats widget** displays the following:
 
-*   **Current Cash**
-*   **Mystery Box claim status**
+*   Current Cash
+*   Mystery Box claim status
 
 ## Installation
 
 1.  Install a user script manager for your browser. For example, [Tampermonkey](https://tampermonkey.net/) for Chrome or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox.
-2.  Go to the [Nitro Type - Show Daily Races](https://greasyfork.org/en/scripts/473519-nitro-type-show-daily-races) script page.
+2.  Go to the [Nitro Type - Race Info Footer](https://greasyfork.org/en/scripts/473595-nitro-type-race-info-footer) script page.
 3.  Click the Install button.
 4.  Go to your [Nitro Type race page](https://www.nitrotype.com/race) and refresh the page.
 5.  You should see the informational footer at the bottom of the page.
