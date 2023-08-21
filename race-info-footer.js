@@ -16,7 +16,7 @@
 
 /* global Dexie moment NTGLOBALS createLogger findReact */
 
-const logging = createLogger("Nitro Type Racing Stats");
+const logging = createLogger("Nitro Type Race Info Footer");
 
 // == Config storage ==
 const db = new Dexie("NTRacingStats");
@@ -24,7 +24,7 @@ db.version(1).stores({
   backupStatData: "userID",
 });
 db.open().catch((e) => {
-  logging.error("Init")("Failed to open up the racing stat cache database", e);
+  logging.error("Init")("Failed to open up the race info footer cache database", e);
 });
 
 ////////////
@@ -78,7 +78,7 @@ const mergeDailyChallengeData = (progress) => {
 };
 
 /**
- * Retrieve Racing Stats from various sources.
+ * Retrieve  Race Info Footer from various sources.
  * @returns {Promise} - Promise that resolves to an object containing the user stats.
  */
 const getStats = async () => {
