@@ -13,7 +13,7 @@ It was based on [@follycakes](https://www.nitrotype.com/racer/follycakes) versio
 
 ### Daily challenges widget
 
-The **Daily challenges widget** displays the following information:
+Displays the following information:
 
 *   Daily challenge progress
 *   Daily challenge reward
@@ -21,7 +21,7 @@ The **Daily challenges widget** displays the following information:
 
 ### Racing stats widget
 
-The **Stats Widget** displays the following stats:
+Displays the following stats:
 
 *   Total user races
 *   Season Races
@@ -32,7 +32,7 @@ The **Stats Widget** displays the following stats:
 
 ### Season progress widget
 
-The **Season progress widget** displays the following:
+Displays the following:
 
 *   Season progress
 *   Next reward
@@ -40,7 +40,7 @@ The **Season progress widget** displays the following:
 
 ### Other stats widget
 
-The **Extra stats widget** displays the following:
+Displays the following:
 
 *   Current Cash
 *   Mystery Box claim status
