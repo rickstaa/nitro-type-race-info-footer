@@ -125,7 +125,8 @@ const getTeamStats = async () => {
         Authorization: `Bearer ${authToken}`,
       },
     });
-    const { leaderboard, motd, info, stats, members, season } = await response.json();
+    const { results } = await response.json();
+    const { leaderboard, motd, info, stats, members, season } = results
     const member = members?.find((u) => u.userID === CURRENT_USER.userID);
     const seasonStats = season?.find((u) => u.userID === CURRENT_USER.userID);
     return { leaderboard, motd, info, stats, member, season: seasonStats };
