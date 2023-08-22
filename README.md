@@ -54,6 +54,10 @@ Displays the following:
 4.  Go to your [Nitro Type race page](https://www.nitrotype.com/race) and refresh the page.
 5.  You should see the informational footer at the bottom of the page.
 
+## Uninstallation
+
+To uninstall the userscript, simply disable or remove it from your userscript manager.
+
 ## Screenshot
 
 ![image](https://github.com/rickstaa/nitro-type-race-info-footer/assets/17570430/351a76fe-34e0-4799-9b52-06b9f8018a14)
