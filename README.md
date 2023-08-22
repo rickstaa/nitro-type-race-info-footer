@@ -7,7 +7,8 @@ This repository contains a userscript that adds an informational footer to the [
 *   **Season progress widget** - Shows your season progress and next reward.
 *   **Extra stats widget** - Shows other Nitro Type-related stats (see below).
 
-It was based on [@follycakes](https://www.nitrotype.com/racer/follycakes) version of the [Nitro Type-Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) user script that was originally created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt).
+> [!note]\
+> This userscript is based on the [Nitro Type - Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) userscript that was created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt).
 
 ## Widgets
 
@@ -47,7 +48,7 @@ Displays the following:
 
 ## Installation
 
-1.  Install a user script manager for your browser. For example, [Tampermonkey](https://tampermonkey.net/) for Chrome or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox.
+1.  Install a userscript manager for your browser. For example, [Tampermonkey](https://tampermonkey.net/) for Chrome or [Greasemonkey](https://addons.mozilla.org/en-US/firefox/addon/greasemonkey/) for Firefox.
 2.  Go to the [Nitro Type - Race Info Footer](https://greasyfork.org/en/scripts/473595-nitro-type-race-info-footer) script page.
 3.  Click the Install button.
 4.  Go to your [Nitro Type race page](https://www.nitrotype.com/race) and refresh the page.
