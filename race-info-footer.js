@@ -107,57 +107,56 @@ const getStats = async () => {
 };
 
 /**
- * Retrieve Summary Stats.
- * @returns {Promise} - Promise that resolves to an object containing the summary stats.
- */
-const getSummaryStats = () => {
-  const authToken = localStorage.getItem("player_token");
-  return fetch("/api/v2/stats/summary", {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  })
-    .then((r) => r.json())
-    .then((r) => {
-      const { racingStats } = r?.results || {};
-      return {
-        seasonBoard: racingStats?.find((b) => b.board === "season"),
-        dailyBoard: racingStats?.find((b) => b.board === "daily"),
-      };
-    })
-    .catch((err) => Promise.reject(err));
-};
-
-/**
  * Retrieve team stats.
  * @returns {Promise} - Promise that resolves to an object containing the team stats.
  */
-const getTeamStats = () => {
-  const { tag, userID } = CURRENT_USER || {};
-  if (!tag) {
-    return Promise.reject(new Error("User is not in a team"));
+const getTeamStats = async () => {
+  const tag = CURRENT_USER?.tag ?? null;
+  if (!tag){
+    console.log("User is not in a team.")
+    return null;
   }
-  const authToken = localStorage.getItem("player_token");
-  return fetch(`/api/v2/teams/${tag}`, {
-    headers: {
-      Authorization: `Bearer ${authToken}`,
-    },
-  })
-    .then((r) => r.json())
-    .then((r) => {
-      const { leaderboard, motd, info, stats, members, season } =
-        r?.results || {};
-      return {
-        leaderboard,
-        motd,
-        info,
-        stats,
-        member: members?.find((u) => u.userID === userID),
-        season: season?.find((u) => u.userID === userID),
-      };
-    })
-    .catch((err) => Promise.reject(err));
+
+  // Retrieve team stats.
+  try {
+    const authToken = localStorage.getItem("player_token");
+    const response = await fetch(`/api/v2/teams/${tag}`, {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+    const { leaderboard, motd, info, stats, members, season } = await response.json();
+    const member = members?.find((u) => u.userID === CURRENT_USER.userID);
+    const seasonStats = season?.find((u) => u.userID === CURRENT_USER.userID);
+    return { leaderboard, motd, info, stats, member, season: seasonStats };
+  } catch (error) {
+    console.error("Error getting team stats:", error);
+    return null;
+  }
 };
+
+/**
+ * Retrieve Summary Stats.
+ * @returns {Promise} - Promise that resolves to an object containing the summary stats.
+ */
+const getSummaryStats = async () => {
+  const authToken = localStorage.getItem("player_token");
+  try {
+    const response = await fetch("/api/v2/stats/summary", {
+      headers: {
+        Authorization: `Bearer ${authToken}`,
+      },
+    });
+    const { results } = await response.json();
+    const seasonBoard = results.racingStats?.find((b) => b.board === "season");
+    const dailyBoard = results.racingStats?.find((b) => b.board === "daily");
+    return { seasonBoard, dailyBoard };
+  } catch (error) {
+    console.error("Error getting summary stats:", error);
+    return null;
+  }
+};
+
 
 //////////////////
 //  Components  //
@@ -383,11 +382,11 @@ const DailyChallengeWidget = (() => {
   const createChallengeNodes = async () => {
     const dailyChallenges = await getDailyChallenges();
     const challengeFragment = document.createDocumentFragment();
-
+    
+    // Create a challenge node for each challenge.
     const challengeNodes = Array.from(dailyChallenges, (challenge) => {
       const node = challengeItemTemplate.cloneNode(true);
       updateChallengeNode(node, challenge);
-
       challengeFragment.append(node);
 
       return node;
@@ -407,6 +406,7 @@ const DailyChallengeWidget = (() => {
   const updateChallengeNode = (node, challenge) => {
     const { title, field, progress, goal, reward } = challenge;
 
+    // Update each element in the challenge node.
     let progressPercentage = goal > 0 ? (progress / goal) * 100 : 0;
     if (progress === goal) {
       progressPercentage = 100;
@@ -818,6 +818,7 @@ const StatWidget = (() => {
  * Adds stats to the race page with current values.
  */
 const addStatsToRacePage = async () => {
+  // Get user and daily challenge stats.
   const { user, dailyChallenges } = await getStats();
   StatWidget.updateStats(user);
   SeasonProgressWidget.updateStats(user);
@@ -825,35 +826,35 @@ const addStatsToRacePage = async () => {
   ToolbarWidget.updateStats(user);
   logging.info("Update")("Start of race");
 
+  // Create Stats widget.
   const root = document.createElement("div");
   const body = document.createElement("div");
   root.classList.add("nt-stats-root");
   body.classList.add("nt-stats-body");
-
   const leftSection = document.createElement("div");
   leftSection.classList.add("nt-stats-left-section");
   leftSection.append(DailyChallengeWidget.root);
-
   const rightSection = document.createElement("div");
   rightSection.classList.add("nt-stats-right-section");
   rightSection.append(StatWidget.root, SeasonProgressWidget.root);
-
   body.append(leftSection, rightSection);
   root.append(body, ToolbarWidget.root);
-
   RACE_CONTAINER.parentElement.append(root);
 
-  const [teamStats, summaryStats] = await Promise.all([
-    getTeamStats(),
-    getSummaryStats(),
-  ]);
+  // Update team stats if user is in a team.
+  const teamStats = await getTeamStats()
+  if (teamStats) {
+    const { member } = teamStats;
+    StatWidget.updateStats({ teamRaces: member.played });
+  }
 
-  const { member } = teamStats;
-  StatWidget.updateStats({ teamRaces: member.played });
-
-  const { seasonBoard } = summaryStats;
-  if (seasonBoard) {
-    StatWidget.updateStats({ seasonRaces: seasonBoard.played });
+  // Update season stats.
+  const summaryStats = await getSummaryStats()
+  if (summaryStats){
+    const { seasonBoard } = summaryStats;
+    if (seasonBoard) {
+      StatWidget.updateStats({ seasonRaces: seasonBoard.played });
+    }
   }
 };
 
@@ -916,7 +917,7 @@ SERVER.on("joined", async (e) => {
 });
 
 /**
- * Tracks the exact time when a race is finished.
+ * Store race results in IndexedDB when the race is complete.
  */
 let hasCollectedResultStats = false;
 SERVER.on("update", async (e) => {
