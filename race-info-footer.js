@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Nitro Type - Race Info Footer
 // @namespace    https://github.com/rickstaa/nitro-type-racing-stats-footer
-// @version      0.5.7
+// @version      1.0.0
 // @description  Adds an information footer to the race page displaying user stats, season information, and daily challenges.
 // @author       Toonidy, Ray Adams/Nate Dogg, Follycakes, Rick Staa
 // @match        *://*.nitrotype.com/race
