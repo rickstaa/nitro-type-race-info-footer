@@ -8,7 +8,7 @@ This repository contains a userscript that adds an informational footer to the [
 *   **Extra stats widget** - Shows other Nitro Type-related stats (see below).
 
 > [!note]\
-> This userscript is based on the [Nitro Type - Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) userscript that was created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt).
+> Based on the [Nitro Type - Racing Stats](https://greasyfork.org/en/scripts/446359-nitro-type-racing-stats) userscript that was created by [Toonity](https://greasyfork.org/en/users/858426-toonidy) and [nate-dogg-nt](https://greasyfork.org/en/users/805959-nate-dogg-nt).
 
 ## Widgets
 
