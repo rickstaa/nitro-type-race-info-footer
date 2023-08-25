@@ -24,7 +24,10 @@ db.version(1).stores({
   backupStatData: "userID",
 });
 db.open().catch((e) => {
-  logging.error("Init")("Failed to open up the race info footer cache database", e);
+  logging.error("Init")(
+    "Failed to open up the race info footer cache database",
+    e
+  );
 });
 
 ////////////
@@ -112,8 +115,8 @@ const getStats = async () => {
  */
 const getTeamStats = async () => {
   const tag = CURRENT_USER?.tag ?? null;
-  if (!tag){
-    console.log("User is not in a team.")
+  if (!tag) {
+    console.log("User is not in a team.");
     return null;
   }
 
@@ -126,7 +129,7 @@ const getTeamStats = async () => {
       },
     });
     const { results } = await response.json();
-    const { leaderboard, motd, info, stats, members, season } = results
+    const { leaderboard, motd, info, stats, members, season } = results;
     const member = members?.find((u) => u.userID === CURRENT_USER.userID);
     const seasonStats = season?.find((u) => u.userID === CURRENT_USER.userID);
     return { leaderboard, motd, info, stats, member, season: seasonStats };
@@ -157,7 +160,6 @@ const getSummaryStats = async () => {
     return null;
   }
 };
-
 
 //////////////////
 //  Components  //
@@ -383,7 +385,7 @@ const DailyChallengeWidget = (() => {
   const createChallengeNodes = async () => {
     const dailyChallenges = await getDailyChallenges();
     const challengeFragment = document.createDocumentFragment();
-    
+
     // Create a challenge node for each challenge.
     const challengeNodes = Array.from(dailyChallenges, (challenge) => {
       const node = challengeItemTemplate.cloneNode(true);
@@ -628,13 +630,19 @@ const SeasonProgressWidget = (({ props }) => {
       level + 1
     );
 
+    // Calculate progress.
+    const progress =
+      ((experience - (totalExpRequired - amountExpRequired)) /
+        amountExpRequired) *
+      100;
+
     // Update progress text node if experience is available.
     if (experience) {
       xpTextNode.textContent = `${(
         amountExpRequired -
         (totalExpRequired - experience)
       ).toLocaleString()} / ${amountExpRequired / 1e3}k XP`;
-      xpProgressBarNode.style.width = `${nextReward.progress}%`;
+      xpProgressBarNode.style.width = `${progress}%`;
       levelNode.textContent =
         currentSeason && level > currentSeason.totalRewards + 1
           ? `∞${level - currentSeason.totalRewards - 1}`
@@ -786,7 +794,7 @@ const StatWidget = (() => {
       const avgSpeed = data?.avgSpeed ?? data?.avgScore;
 
       // Update stats that were supplied.
-      if (racesPlayed){
+      if (racesPlayed) {
         totalRacesElement.textContent = racesPlayed.toLocaleString();
       }
       if (sessionRaces) {
@@ -843,15 +851,15 @@ const addStatsToRacePage = async () => {
   RACE_CONTAINER.parentElement.append(root);
 
   // Update team stats if user is in a team.
-  const teamStats = await getTeamStats()
+  const teamStats = await getTeamStats();
   if (teamStats) {
     const { member } = teamStats;
     StatWidget.updateStats({ teamRaces: member.played });
   }
 
   // Update season stats.
-  const summaryStats = await getSummaryStats()
-  if (summaryStats){
+  const summaryStats = await getSummaryStats();
+  if (summaryStats) {
     const { seasonBoard } = summaryStats;
     if (seasonBoard) {
       StatWidget.updateStats({ seasonRaces: seasonBoard.played });
